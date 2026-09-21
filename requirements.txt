@@ -1,0 +1,14 @@
+# PhishGuard Lean Core Dependencies
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+sqlalchemy>=2.0.0
+requests>=2.31.0
+python-whois>=0.9.3
+google-generativeai==0.8.6
+grpcio>=1.62.0
+grpcio-status>=1.62.0
+shodan>=1.31.0
+selenium>=4.18.0
+webdriver-manager>=4.0.1
+python-dotenv>=1.0.1

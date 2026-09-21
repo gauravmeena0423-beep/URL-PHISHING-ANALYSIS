@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "PhishGuard Security",
+  "version": "1.0",
+  "description": "AI-Powered URL Phishing Scanner",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "http://localhost:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

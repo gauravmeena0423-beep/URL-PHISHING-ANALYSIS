@@ -1,0 +1,54 @@
+PhishGuard_Platform/                        # Aapke Project ka Main Folder
+│
+├── 1_frontend_web/                         # ---> FRONTEND: REACT.JS <---
+│   ├── public/                             # Icons, index.html
+│   ├── src/
+│   │   ├── components/                     # Chote UI Parts (Buttons, Loading Spinners, Charts)
+│   │   │   ├── SearchBar.jsx               # URL daalne wali input field
+│   │   │   └── ThreatMeter.jsx             # 0-100% danger dikhane wala gauge/chart
+│   │   ├── pages/                          # Main Pages
+│   │   │   ├── Dashboard.jsx               # Main screen jahan URL scan hota hai
+│   │   │   ├── ReportView.jsx              # Scan hone ke baad ka detailed result page
+│   │   │   └── History.jsx                 # Purane scans ki list
+│   │   ├── services/                       # API connect karne wali files
+│   │   │   └── api.js                      # Backend (FastAPI) ko requests bhejne ka code (Axios/Fetch)
+│   │   └── App.js                          # Frontend ki main entry file
+│   └── package.json                        # React ki libraries ki list
+│
+├── 2_browser_extension/                    # ---> FRONTEND: CHROME EXTENSION <---
+│   ├── manifest.json                       # Extension ki settings
+│   ├── popup.html & popup.js               # Extension pe click karne par jo chota box khulega
+│   └── background.js                       # Jo chupchaap background me current tab ka URL utha kar Backend ko bhejega
+│
+├── 3_backend_and_core/                     # ---> BACKEND + AI CORE: FASTAPI (PYTHON) <---
+│   ├── main.py                             # BACKEND ENTRY POINT: FastAPI server yahan se start hoga
+│   │
+│   ├── api_routes/                         # 1. GATEWAY: Frontend se requests yahan aayengi
+│   │   ├── auth_routes.py                  # User Login/Signup API
+│   │   └── scan_routes.py                  # URL receive karne aur report wapas bhejne ki API [INPUT/OUTPUT]
+│   │
+│   ├── database/                           # 2. STORAGE: Data save karne ka code
+│   │   ├── db_config.py                    # MongoDB/SQL se connection
+│   │   └── models.py                       # Database Table ka structure (e.g., UserTable, ScanHistoryTable)
+│   │
+│   ├── core_scanner/                       # 3. ASLI DIMAAG (The Engine)
+│   │   ├── orchestrator.py                 # SABKA BOSS: Yeh niche di gayi sabhi files ko ek ke baad ek chalayega
+│   │   │
+│   │   ├── extractors/                     # URL ki kundali nikaalne wale
+│   │   │   ├── lexical.py                  # URL ki spelling, length, symbols check karna
+│   │   │   └── network.py                  # WHOIS, Domain age, SSL certificate check karna
+│   │   │
+│   │   ├── ai_ml_models/                   # AI Model wala section
+│   │   │   ├── trained_model.pkl           # Aapka train kiya hua Machine Learning model
+│   │   │   └── predictor.py                # ML model se URL check karwa kar (0-1) score lena
+│   │   │
+│   │   └── threat_intel/                   # Bahar ki APIs se data laane wale
+│   │       ├── virustotal.py               # VirusTotal API call karna
+│   │       └── google_safebrowsing.py      # Google Check
+│   │
+│   └── utils/                              # 4. HELPERS
+│       └── report_builder.py               # AI aur Scanners se jo data aaya, usko combine karke ek final JSON ya PDF banana
+│
+├── .env                                    # Saare Gupt Passwords aur API Keys yahan (e.g., VT_API_KEY, DB_PASSWORD)
+├── requirements.txt                        # Python dependencies (fastapi, uvicorn, scikit-learn, pymongo, etc.)
+└── README.md                               # Project run karne ke commands
